@@ -1,0 +1,4 @@
+node_modules/
+.vscode/
+db_config.ts
+yarn-error.log
