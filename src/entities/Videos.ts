@@ -14,17 +14,17 @@ export class Video {
     description: string
 
     @Column()
-    duration: number
+    category_id: string
 
     @Column()
-    category_id: string
+    duration: number
 
     @ManyToOne(() => Category)
     @JoinColumn({ name: "category_id" })
     category: Category
 
     @CreateDateColumn()
-    creat_at: Date
+    created_at: Date
 
     constructor() {
         if(!this.id) {

@@ -13,7 +13,7 @@ export class Category {
     description: string
 
     @CreateDateColumn()
-    creat_at: Date
+    created_at: Date
 
     constructor() {
         if(!this.id) {
