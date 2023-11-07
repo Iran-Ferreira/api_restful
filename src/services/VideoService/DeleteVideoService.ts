@@ -10,5 +10,6 @@ export class DeleteVideoService {
         }
 
         await repo.delete(id)
+        return "Video delete successfully"
     }
 }
