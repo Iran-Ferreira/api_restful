@@ -9,6 +9,7 @@ import { DeleteVideoController } from "./controllers/VideoController/DeleteVideo
 import { UpdateVideoController } from "./controllers/VideoController/UpdateVideoController";
 import { CreateUserController } from "./controllers/UserController/CreateUserController";
 import { GetAllUsersController } from "./controllers/UserController/GetAllUsersController";
+import { DeleteUserController } from "./controllers/UserController/DeleteUserController";
 
 const routes = Router()
 
@@ -24,5 +25,6 @@ routes.put("/videos/:id", new UpdateVideoController().handle)
 
 routes.post("/users", new CreateUserController().handle)
 routes.get("/users", new GetAllUsersController().handle)
+routes.delete("/users/:id", new DeleteUserController().handle)
 
 export { routes }
