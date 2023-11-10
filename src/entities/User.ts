@@ -7,7 +7,7 @@ export class User {
     id: string
 
     @Column()
-    name: string
+    email: string
 
     @Column()
     password: string
@@ -17,4 +17,5 @@ export class User {
             this.id = uuid()
         }
     }
+
 }
