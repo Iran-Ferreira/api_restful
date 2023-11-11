@@ -1,13 +1,12 @@
 import { PostgresDataSource } from "../../../db_config";
 import { User } from "../../entities/User";
-import bcrypt, { hash } from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { hash } from 'bcryptjs';
 
 
 type UserRequest = { 
     email: string
     password: string
-}   
+}  
 
 export class CreateUserService {
     async execute({ email, password }:UserRequest ): Promise<User | Error>{
@@ -17,18 +16,16 @@ export class CreateUserService {
             return new Error("Email already exists")
         }
 
+        // Criar senha hash
         const passwordHash = await hash(password, 10)
 
+        // criar novo usuário
         const user = repo.create({
             email, 
             password: passwordHash
         })
 
-        const validate = await bcrypt.compare(password, user.password)
-        if (!validate){
-            return new Error("Wrong password")
-        }
-
+        // Salva o usuário e o retorna 
         repo.save(user)
         return user
 

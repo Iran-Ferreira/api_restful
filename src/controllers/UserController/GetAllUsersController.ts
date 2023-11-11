@@ -4,9 +4,11 @@ import { GetAllUsersService } from "../../services/UserService/GetAllUsersServic
 export class GetAllUsersController {
     
     async handle(request: Request, response: Response){
+        
         const service = new GetAllUsersService()
 
         const users = await service.execute()
+
         return response.json(users)
     }
 }
