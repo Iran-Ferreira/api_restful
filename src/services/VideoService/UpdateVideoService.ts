@@ -18,9 +18,9 @@ export class UpdateVideoService {
             return new Error("Video does not exists!")
         }
 
-        video.name = name ? name : video.name
-        video.description = description ? description : video.description
-        video.duration = duration ? duration : video.duration
+        video.name = name ?? video.name
+        video.description = description ?? video.description
+        video.duration = duration ?? video.duration
 
         await repo.save(video)
         return video

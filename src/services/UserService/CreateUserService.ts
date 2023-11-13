@@ -11,7 +11,8 @@ type UserRequest = {
 export class CreateUserService {
     async execute({ email, password }:UserRequest ): Promise<User | Error>{
         const repo = PostgresDataSource.getRepository(User)
-    
+        
+        // Verificar se o email já está registrado.
         if(await repo.findOne({ where: { email } })){
             return new Error("Email already exists")
         }

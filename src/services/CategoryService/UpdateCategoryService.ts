@@ -17,9 +17,9 @@ export class UpdateCategoryService {
             return new Error("Category does not exists!")
         }
 
-        category.name = name ? name : category.name
-        category.description = description ? description : category.description
-
+        category.name = name ?? category.name;
+        category.description = description ?? category.description;
+        
         await repo.save(category)
         return category
     }

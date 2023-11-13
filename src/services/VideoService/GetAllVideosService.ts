@@ -5,6 +5,7 @@ export class GetAllVideosService {
     async execute() {
         const repo = PostgresDataSource.getRepository(Video)
 
+        // Retorna todos os videos
         const videos = await repo.find({
             relations: ["category"]
         })

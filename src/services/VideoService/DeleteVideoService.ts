@@ -5,6 +5,7 @@ export class DeleteVideoService {
     async execute(id: string) {
         const repo = PostgresDataSource.getRepository(Video)
         
+        // Verificar se o Video não existe. Se existir, vai ser apagado.
         if (!(await repo.findOne({ where: { id } }))) {
             return new Error("Video does not exists!")
         }
