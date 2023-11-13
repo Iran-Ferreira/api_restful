@@ -1,10 +1,11 @@
 import { PostgresDataSource } from "../../../db_config";
 import { User } from "../../entities/User";
+import { hash } from "bcryptjs";
 
 type UpdateUserRequest = { 
     id: string
     email: string
-    password: string
+    password?: string // tornando a senha opcional
 }  
 
 export class UpdateUserService {
@@ -17,8 +18,13 @@ export class UpdateUserService {
             throw new Error("User does not exists!")
         }
 
+        // Se uma nova senha for fornecida, criptografe-a
+        if (password) {
+            const passwordHash = await hash(password, 10)
+            user.password = passwordHash;
+        }
+
         user.email = email ?? user.email
-        user.password = password ?? user.password
     
         await repo.save(user)
         return user
