@@ -14,8 +14,8 @@ Mas para criar um conexão usando typeorm é bem fácil, veja a parte de documen
 ## Funcionalidades e Melhorias
 
 - CRUD de Filmes e categorias e usuários
-- 1 - Criar uma API capaz de realizar autenticação de usuários com JWT e um CRUD de dados (gravando no banco de dados)
-- 2 - Criar um Front-end capaz de interagir com essa API, permitindo fazer login, logout, inserção de dados, listagem de dados, atualização de dados e remoção.
+- 1 - Criar uma API capaz de realizar autenticação de usuários com JWT e um CRUD de dados (gravando no banco de dados) - Feito.
+- 2 - Criar um Front-end capaz de interagir com essa API, permitindo fazer login, logout, inserção de dados, listagem de dados, atualização de dados e remoção. - Em andamento.
 - Terminei o tutorial e estou estudando para colocar os itens 1 e 2 em funcionamento.  
 
 
