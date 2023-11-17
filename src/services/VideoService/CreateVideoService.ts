@@ -15,6 +15,7 @@ export class CreateVideoService {
         const repo = PostgresDataSource.getRepository(Video)
         const repocategory = PostgresDataSource.getRepository(Category)
 
+        // Se eu colocar uma categoria que não existe no filme vai retornar um erro. 
         if(!(await repocategory.findOne({ where: { id } }))){
             return new Error("Category does not exists!")
         }

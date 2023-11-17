@@ -14,6 +14,7 @@ export class UpdateUserService {
 
         const user = await repo.findOne({ where: { id }})
 
+        // Se não encontrar o id ele quer dizer que não existe
         if(!user) {
             throw new Error("User does not exists!")
         }

@@ -8,8 +8,10 @@ export class UpdateCategoryController {
 
         const service = new UpdateCategoryService()
 
+        // Execute o serviço de categoria para atualizar a categoria
         const result = await service.execute({ id, name, description })
 
+        // Se ocorrer um erro, verificar se é uma instância de Error
         if(result instanceof Error){
             return response.status(400).json(result.message)
         }

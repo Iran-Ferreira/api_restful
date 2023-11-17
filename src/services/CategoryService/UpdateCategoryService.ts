@@ -12,7 +12,6 @@ export class UpdateCategoryService {
         const repo = PostgresDataSource.getRepository(Category) 
 
         const category = await repo.findOne({ where: { id } })
-
         if(!category) {
             return new Error("Category does not exists!")
         }

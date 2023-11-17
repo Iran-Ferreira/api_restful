@@ -13,6 +13,7 @@ export class DeleteCategoryService {
             await repo.delete(id)
             return "Category delete successfully"
         }
+        // Se deletar uma categoria que está vinculada em um filme retorna um erro.
         catch (error) {
             if(error.code === "23503"){
                 return new Error("Delete on table categories violates foreign key constraint on table videos")

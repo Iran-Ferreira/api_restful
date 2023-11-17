@@ -7,8 +7,10 @@ export class CreateUserController {
 
         const service = new CreateUserService()
 
+        // Execute o serviço de user para criar user
         const result =  await service.execute({ email, password})
 
+        // Se ocorrer um erro, verificar se é uma instância de Error
         if(result instanceof Error){
             return response.status(400).json(result.message)
         }

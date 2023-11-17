@@ -7,8 +7,10 @@ export class CreateCategoryController {
 
         const service = new CreateCategoryService()
 
+        // Execute o serviço de categoria para criar a categoria
         const result = await service.execute({ name, description })
 
+        // Se ocorrer um erro, verificar se é uma instância de Error
         if(result instanceof Error) {
             return response.status(400).json(result.message)
         }

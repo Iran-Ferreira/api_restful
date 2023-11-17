@@ -6,6 +6,7 @@ export class GetAllCategoriesService {
     async execute(){
         const repo = PostgresDataSource.getRepository(Category)
 
+        // Retorna as categorias
         const categories = await repo.find()
 
         return categories 

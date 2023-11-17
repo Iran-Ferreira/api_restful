@@ -14,6 +14,7 @@ export class UpdateVideoService {
 
         const video = await repo.findOne({ where: { id }})
 
+        // Se não encontrar o id do video quer dizer que ele não existe
         if(!video){
             return new Error("Video does not exists!")
         }

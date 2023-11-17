@@ -7,6 +7,7 @@ export class CreateVideoController {
 
         const service = new CreateVideoService()
 
+        // Execute o serviço de video para criar video
         const result = await service.execute({
             name,
             description,
@@ -15,6 +16,7 @@ export class CreateVideoController {
             id
         })
 
+        // Se ocorrer um erro, verificar se é uma instância de Error
         if(result instanceof Error) {
             return response.status(400).json(result.message)
         }
