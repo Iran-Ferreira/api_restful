@@ -23,7 +23,7 @@ export class CreateUserService {
         // criar novo usuário
         const user = repo.create({
             email, 
-            password: passwordHash // coxinha123
+            password: passwordHash
         })
 
         // Salva o usuário e o retorna 
