@@ -26,6 +26,7 @@ export class CreateVideoService {
             return video
             
         }catch(error){
+            console.log(error);
             if(error.code === "23502"){
                 return new Error("null value in column name of relation videos violates not-null constraint")
             }
