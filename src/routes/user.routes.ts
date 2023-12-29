@@ -16,7 +16,7 @@ routes.post("/users", (req: Request, res: Response) => {
 
 routes.get("/users", (req: Request, res: Response) => {
     getAllController.handle(req, res);
-});
+})
 
 routes.delete("/users/:id", (req: Request, res: Response) => {
     deleteController.handle(req, res)
