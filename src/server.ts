@@ -7,6 +7,7 @@ import routes from './routes';
 dotenv.config();
 
 const app = express()
+const porta = 3000 
 
 app.use(cors())
 //origin: ["http://localhost:5000"]
@@ -15,4 +16,4 @@ app.use(express.json())
 
 app.use(routes)
 
-app.listen(3000, () => console.log("Servidor funcionando"))
+app.listen(porta, () => console.log("Servidor funcionando"))
