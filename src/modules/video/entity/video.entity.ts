@@ -1,9 +1,9 @@
 import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm"
 import { v4 as uuid } from "uuid"
-import { Category } from "../../category/entity/Category"
+import { CategoryEntity } from "../../category/entity/category.entity"
 
 @Entity("videos")
-export class Video {
+export class VideoEntity {
     @PrimaryColumn()
     id: string
 
@@ -19,9 +19,9 @@ export class Video {
     @Column()
     duration: number
 
-    @ManyToOne(() => Category)
+    @ManyToOne(() => CategoryEntity)
     @JoinColumn({ name: "category_id" })
-    category: Category
+    category: CategoryEntity
 
     @CreateDateColumn()
     created_at: Date
