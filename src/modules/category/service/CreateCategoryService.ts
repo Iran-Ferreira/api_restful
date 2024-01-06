@@ -1,28 +1,10 @@
-import { PostgresDataSource } from "../../../../db_config";
-import { Category } from "../entity/Category";
-
-type CategoryRequest = {
-    name: string
-    description: string
-}
+import { CategoryEntity } from "../entity/category.entity";
+import { CategoryRepository } from "../repositories/category.repository";
 
 export class CreateCategoryService {
-
-    async execute({ name, description }:CategoryRequest ): Promise<Category | Error>{
-        const repo = PostgresDataSource.getRepository(Category)
-
-        // SELECT * FROM CATEGORIES WHERE NAME  = "NAME" LIMIT 1
-        if(await repo.findOne({ where:{ name } })){
-            return new Error("Category already exists");
-            
-        }
-        
-        const category = repo.create({
-            name, 
-            description
-        })
-        await repo.save(category)
-
+    constructor(private readonly categoryRepository: CategoryRepository) {}
+    async execute(name: string, description: string): Promise<CategoryEntity>{
+        const category = await this.categoryRepository.create(name, description)
         return category
     }
 }

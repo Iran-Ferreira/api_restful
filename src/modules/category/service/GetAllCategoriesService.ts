@@ -1,14 +1,10 @@
-import { PostgresDataSource } from "../../../../db_config";
-import { Category } from "../entity/Category";
+import { CategoryEntity } from "../entity/category.entity";
+import { CategoryRepository } from "../repositories/category.repository";
 
 export class GetAllCategoriesService {
-    
-    async execute(){
-        const repo = PostgresDataSource.getRepository(Category)
-
-        // Retorna as categorias
-        const categories = await repo.find()
-
+    constructor(private readonly categoryRepository: CategoryRepository) {}
+    async execute(): Promise<CategoryEntity>{
+        const categories = await this.categoryRepository.find()
         return categories 
     }
 }
