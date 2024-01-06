@@ -1,14 +1,10 @@
-import { PostgresDataSource } from "../../../../db_config";
-import { User } from "../entity/User";
+import { UserEntity } from "../entity/user.entity";
+import { UserRepository } from "../repositories/user.repository";
 
 export class GetAllUsersService {
-    
-    async execute(){
-        const repo = PostgresDataSource.getRepository(User)
-
-        // Retorna todos os user 
-        const users = await repo.find()
-
-        return users 
+    constructor(private readonly userRepository: UserRepository) {}
+    async execute(): Promise<UserEntity[]>{
+        const users = await this.userRepository.find()
+        return users
     }
 }
