@@ -1,6 +1,7 @@
 import {
     createController,
     getAllController,
+    getOneController,
     deleteController,
     updateController
 } from "../modules/category"
@@ -15,6 +16,10 @@ routes.post("/categories", (req: Request, res: Response) => {
 
 routes.get("/categories", (req: Request, res: Response) => {
     getAllController.handle(req, res);
+})
+
+routes.get("/categories/:id", (req: Request, res: Response) => {
+    getOneController.handle(req, res);
 })
 
 routes.delete("/categories/:id", (req: Request, res: Response) => {
