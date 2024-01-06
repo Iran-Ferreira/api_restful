@@ -2,19 +2,12 @@ import { Request, Response } from "express";
 import { DeleteCategoryService } from "../service/DeleteCategoryService";
 
 export class DeleteCategoryController {
-    async handle(request: Request, response: Response) {
+    constructor(private readonly service: DeleteCategoryService) {}
+    async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.params
 
-        const service = new DeleteCategoryService()
+        await this.service.execute(String(id))
 
-        // Execute o serviço de categoria para deletar categoria
-        const result = await service.execute(id)
-
-        // Se ocorrer um erro, verificar se é uma instância de Error
-        if (result instanceof Error) {
-            return response.status(400).json(result.message)
-        }
-
-        return response.status(204).end()
+        return response.json({ message: "Categoria removida" })
     }
 }

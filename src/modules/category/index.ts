@@ -4,7 +4,9 @@ import { CreateCategoryService } from "./service/CreateCategoryService";
 import { GetAllCategoriesController } from "./controller/GetAllCategoriesController";
 import { GetAllCategoriesService } from "./service/GetAllCategoriesService";
 import { DeleteCategoryController } from "./controller/DeleteCategoryController";
+import { DeleteCategoryService } from "./service/DeleteCategoryService";
 import { UpdateCategoryController } from "./controller/UpdateCategoryController";
+import { UpdateCategoryService } from "./service/UpdateCategoryService";
 
 const repository = new TypeormCategoryRepository()
 
@@ -14,9 +16,11 @@ const createController = new CreateCategoryController(createService)
 const getAllService = new GetAllCategoriesService(repository)
 const getAllController  = new GetAllCategoriesController(getAllService)
 
+const deleteService = new DeleteCategoryService(repository)
+const deleteController = new DeleteCategoryController(deleteService)
 
-const deleteController = new DeleteCategoryController()
-const updateController = new UpdateCategoryController()
+const updateService = new UpdateCategoryService(repository)
+const updateController = new UpdateCategoryController(updateService)
 
 
 export { 
