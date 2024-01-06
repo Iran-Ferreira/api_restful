@@ -1,6 +1,7 @@
 import {
     createController,
     getAllController,
+    getOneController,
     deleteController,
     updateController,
     loginController
@@ -16,6 +17,10 @@ routes.post("/users", (req: Request, res: Response) => {
 
 routes.get("/users", (req: Request, res: Response) => {
     getAllController.handle(req, res);
+})
+
+routes.get("/users/:id", (req: Request, res: Response) => {
+    getOneController.handle(req, res);
 })
 
 routes.delete("/users/:id", (req: Request, res: Response) => {
