@@ -49,7 +49,6 @@ export class TypeormCategoryRepository implements CategoryRepository {
     }
 
     async update(id: string, name: string, description: string): Promise<void> {
-        
         try {
             const category = await this.repo.findOne({ where: { id }  })
 
