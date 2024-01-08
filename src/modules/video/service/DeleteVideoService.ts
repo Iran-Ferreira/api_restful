@@ -1,16 +1,10 @@
 import { PostgresDataSource } from "../../../../db_config";
-import { Video } from "../entity/Videos";
+import { VideoEntity } from "../entity/video.entity";
+import { VideoRepository } from "../repository/video.repository";
 
 export class DeleteVideoService {
-    async execute(id: string) {
-        const repo = PostgresDataSource.getRepository(Video)
-        
-        // Verificar se o Video não existe. Se existir, vai ser apagado.
-        if (!(await repo.findOne({ where: { id } }))) {
-            return new Error("Video does not exists!")
-        }
-
-        await repo.delete(id)
-        return "Video delete successfully"
+    constructor(private readonly videoRepository: VideoRepository) {}
+    async execute(id: string): Promise<void> {
+        await this.videoRepository.delete(id)
     }
 }

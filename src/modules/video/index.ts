@@ -4,6 +4,7 @@ import { CreateVideoService } from "./service/CreateVideoService";
 import { GetAllVideosController } from "./controller/GetAllVideosController";
 import { GetAllVideosService } from "./service/GetAllVideosService";
 import { DeleteVideoController } from "./controller/DeleteVideoController";
+import { DeleteVideoService } from "./service/DeleteVideoService";
 import { UpdateVideoController } from "./controller/UpdateVideoController";
 
 const repository = new TypeormVideoRepository()
@@ -14,8 +15,10 @@ const createController = new CreateVideoController(createService)
 const getAllService = new GetAllVideosService(repository)
 const getAllController = new GetAllVideosController(getAllService)
 
+const deleteService = new DeleteVideoService(repository)
+const deleteController = new DeleteVideoController(deleteService)
 
-const deleteController = new DeleteVideoController()
+
 const updateController = new UpdateVideoController()
 
 export { 
