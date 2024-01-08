@@ -10,8 +10,9 @@ export class TypeormVideoRepository implements VideoRepository {
 
     async create(name: string, description: string, category_id: string, duration: number): Promise<VideoEntity> {
         try {
-            const video = await this.repo.create(name, description, category_id, duration)
+            const video = await this.repo.create({ name, description, category_id, duration })
             this.repo.save(video)
+            console.log("create video: ", video)
             return video
         } catch (error) {
             console.log(error);
@@ -23,7 +24,7 @@ export class TypeormVideoRepository implements VideoRepository {
 
     async find(): Promise<VideoEntity> {
         try {
-            const videos = await this.repo.find({ relations: ["category"]})
+            const videos = await this.repo.find({ relations: ["category"] })
             return videos 
         } catch (error) {
             console.log(error)
