@@ -1,15 +1,11 @@
-import { PostgresDataSource } from "../../../../db_config";
-import { Video } from "../entity/Videos";
+import { VideoEntity } from "../entity/video.entity";
+import { VideoRepository } from "../repository/video.repository";
 
 export class GetAllVideosService {
-    async execute() {
-        const repo = PostgresDataSource.getRepository(Video)
-
+    constructor(private readonly videoRepository: VideoRepository) {}
+    async execute(): Promise<VideoEntity> {
         // Retorna todos os videos
-        const videos = await repo.find({
-            relations: ["category"]
-        })
-
+        const videos = await this.videoRepository.find()
         return videos
     }
 }
