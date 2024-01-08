@@ -1,29 +1,9 @@
-import { PostgresDataSource } from "../../../../db_config";
-import { Video } from "../entity/Videos";
+import { VideoRepository } from "../repository/video.repository";
 
-type VideoUpdateRquest = {
-    id: string 
-    name: string
-    description: string
-    duration: number
-}
 
 export class UpdateVideoService {
-    async execute({ id, name, description, duration }: VideoUpdateRquest){
-        const repo = PostgresDataSource.getRepository(Video)
-
-        const video = await repo.findOne({ where: { id }})
-
-        // Se não encontrar o id do video quer dizer que ele não existe
-        if(!video){
-            return new Error("Video does not exists!")
-        }
-
-        video.name = name ?? video.name
-        video.description = description ?? video.description
-        video.duration = duration ?? video.duration
-
-        await repo.save(video)
-        return video
+    constructor(private readonly videoRepository: VideoRepository) {}
+    async execute(id: string, name: string, description: string, duration: number ): Promise<void>{
+        await this.videoRepository.update(id, name, description, duration)
     }
 }

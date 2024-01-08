@@ -1,5 +1,3 @@
-import { PostgresDataSource } from "../../../../db_config";
-import { VideoEntity } from "../entity/video.entity";
 import { VideoRepository } from "../repository/video.repository";
 
 export class DeleteVideoService {
