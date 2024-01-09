@@ -1,6 +1,7 @@
 import {
     createController,
     getAllController,
+    getOneController,
     deleteController,
     updateController
 
@@ -16,6 +17,10 @@ routes.post("/videos", (req: Request, res: Response) => {
 
 routes.get("/videos", (req: Request, res: Response) => {
     getAllController.handle(req, res);
+})
+
+routes.get("/videos/:id", (req: Request, res: Response) => {
+    getOneController.handle(req, res);
 })
 
 routes.delete("/videos/:id", (req: Request, res: Response) => {
