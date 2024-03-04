@@ -10,6 +10,7 @@ import { DeleteUserService } from "./service/DeleteUserService";
 import { UpdateUserController } from "./controller/UpdateUserController";
 import { UpdateUserService } from "./service/UpdateUserService";
 import { LoginUserController } from "./controller/LoginUserController";
+import { LoginUserService } from "./service/LoginUserService";
 
 const repository = new TypeormUserRepository()
 
@@ -28,8 +29,8 @@ const deleteController = new DeleteUserController(deleteService)
 const updateService = new UpdateUserService(repository)
 const updateController = new UpdateUserController(updateService)
 
-
-const loginController = new LoginUserController()
+const loginService = new LoginUserService(repository)
+const loginController = new LoginUserController(loginService)
 
 
 export { 
