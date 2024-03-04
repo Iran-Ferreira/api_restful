@@ -3,12 +3,12 @@ import { LoginUserService } from '../service/LoginUserService';
 
 export class LoginUserController {
     constructor(private readonly service: LoginUserService) {}
-    async handle(request: Request, response: Response) {
+    async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.params
         const { email, password } = request.body  
 
-        await this.service.execute(String(id), email, password)
+        const token = await this.service.execute(String(id), email, password)
 
-        return response.json({ message: "Login feito com sucesso" })
+        return response.json(token)
     }
 }

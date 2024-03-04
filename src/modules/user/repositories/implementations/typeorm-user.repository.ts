@@ -81,14 +81,14 @@ export class TypeormUserRepository implements UserRepository {
         }
     }
 
-    async login(id: string, email: string, password: string): Promise<void> {
+    async login(id: string, email: string, password: string): Promise<string> {
         try {
             const user = await this.repo.findOne({ where: { email }})
 
             const passwordMatch = await bcrypt.compare(password, user.password)
 
             const token = JWTService.sign({ id: id })
-
+            return token
         } catch (error) {
             console.log(error)
             throw new Error("Erro ao fazer login")
