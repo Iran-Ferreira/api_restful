@@ -31,7 +31,7 @@ routes.put("/users/:id", (req: Request, res: Response) => {
     updateController.handle(req, res)
 })
 
-routes.post("/login", (req: Request, res: Response) => {
+routes.post("/login/:id", (req: Request, res: Response) => {
     loginController.handle(req, res)
 })
 
