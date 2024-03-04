@@ -2,6 +2,8 @@ import { PostgresDataSource } from "../../../../../db_config";
 import { UserEntity } from "../../entity/user.entity";
 import { UserRepository } from "../user.repository";
 import { hash } from 'bcryptjs';
+import { JWTService } from "../../service/JWTService";
+import bcrypt from 'bcryptjs';
 
 export class TypeormUserRepository implements UserRepository {
     private repo
@@ -76,6 +78,20 @@ export class TypeormUserRepository implements UserRepository {
         } catch (error) {
             console.log(error)
             throw new Error("Erro ao atualizar um usuário")
+        }
+    }
+
+    async login(id: string, email: string, password: string): Promise<void> {
+        try {
+            const user = await this.repo.findOne({ where: { email }})
+
+            const passwordMatch = await bcrypt.compare(password, user.password)
+
+            const token = JWTService.sign({ id: id })
+
+        } catch (error) {
+            console.log(error)
+            throw new Error("Erro ao fazer login")
         }
     }
 
